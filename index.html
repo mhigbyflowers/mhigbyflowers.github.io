@@ -72,8 +72,8 @@
     <div class="container">
         <section class="info">
             <h1 class="text-left">Morgan Higby-Flowers</h1>
-            <h3>Web Developer && New Media Artist</h3>
-            <div class="info-body">
+            <h3>New Media Artist</h3>
+            <!-- <div class="info-body">
                 <div>Employment:</div>
                 <div> <strong>Sr Application Developer</strong> @ VUMC </div>
                 <div>Education:</div>
@@ -82,14 +82,14 @@
                     Chicago </div>
                 <div>Lives:</div>
                 <div><strong> Nashville, TN </strong></div>
-            </div>
+            </div> -->
 
 
-            <p class='set'><strong>Some websites I develop:</strong></p>
+            <!-- <p class='set'><strong>Some websites I develop:</strong></p>
             <a href="http://databrowser.researchallofus.org">Data Browser</a> |
             <a href="http://virginiagriswold.com/">Virginia Griswold Artist</a> |
             <a href="http://phekb.org/"> The Phenotype KnowledgeBase</a> |
-            <a href="https://pogoe.org/">The Portal of Geriatrics Online Education</a>
+            <a href="https://pogoe.org/">The Portal of Geriatrics Online Education</a> -->
             <p class='set'><strong>Some of my artwork:</strong></p>
             <a href="https://vimeo.com/159279775">P r o x m i t y</a> |
             <a href="https://vimeo.com/134217703">Syncope</a> |
@@ -135,6 +135,19 @@
     var sizeY = 100;
     var now = new Date();
     var sec = now.getSeconds();
+    const compositeList = [
+        'source-over',
+        'source-atop',
+        'source-in',
+        'source-out',
+        'destination-over',
+        'destination-atop',
+        'destination-in',
+        'destination-out',
+        'lighter',
+        'copy',
+        'xor'
+    ]
 
     window.addEventListener("resize", resize, false);
     document.addEventListener("mousedown", mouseDown, false);
@@ -153,6 +166,11 @@
         translateY = ev.clientY;
     });
 
+    function randomComposite(){
+        return compositeList[Math.floor(Math.random() * compositeList.length)];
+        
+    }
+
     function drawScene() {
 
         cachedTexture = renderToCache(function (ctx) {
@@ -160,9 +178,10 @@
 
             // ctx.translate(centerX - width / 2, centerY - height / 2);
             // ctx.scale(.9999, .999);
-            ctx.setTransform(1, 0.000, 0.000, 1.005, 0, 0)
+            ctx.setTransform(1, 0.000, 0.000, 1.009, 0, 0);
             ctx.drawImage(cachedTexture, 0, 0, width, height);
-            ctx.setTransform(1, 0.000, 0.000, .999, 0, 0)
+            ctx.globalCompositeOperation = "darken"
+            ctx.setTransform(1, 0.000, 0.000, .998, 0, 0);
             ctx.drawImage(cachedTexture, 0, 0, width, height);
             // ctx.setTransform(1, 0.000, 0.000, 1, 0, 0)
 
@@ -172,7 +191,7 @@
             var imgWidth = parseInt(img.naturalWidth);
             var imgHeight = parseInt(img.naturalHeight);
             ctx.globalCompositeOperation = "xor";
-            ctx.drawImage(img, translateX - imgWidth / 2, translateY - imgHeight / 2,600,600);
+            ctx.drawImage(img, translateX - imgWidth / 2, translateY - imgHeight / 2, 600, 600);
             // ctx.drawImage(img, numX ^ imgHeight / 2, numY ^ height / 2);
 
 
@@ -195,7 +214,7 @@
         var now = performance.now() / 100;
         if (animating) {
 
-            setTimeout(() => raf(tick), 40);
+            setTimeout(() => raf(tick), 60);
             theta = (now / time) / direction;
             time = now;
             drawScene();
@@ -218,6 +237,7 @@
     }
 
     function mouseDown(e) {
+        randomComposite();
         // click to pasue
         e.stopPropagation();
         e.preventDefault();
