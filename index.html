@@ -1,3 +1,238 @@
+
+
 <!DOCTYPE html>
-<body>sup boiiii</body>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <meta name="google-site-verification" content="DHNpaieHLRmWXaoeKyVS0UuJdj3WiYps1ADOQ2_DzsY" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142708787-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+        gtag('config', 'UA-142708787-1');
+  </script>
+
+  <style>
+  body{
+   margin:0;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .container{
+    width: 100%;
+    background:white;
+    padding-right: 2rem;
+  }
+
+
+    canvas {
+      position: fixed;
+      z-index: -1;
+      height: 105vh;
+      width: 105vw;
+      opacity: 1;
+      cursor: none;
+    }
+
+
+    .info {
+      cursor: default;
+      background: rgba(255, 255, 255, 1);
+      width: 95%;
+      padding: 2rem;
+      margin:auto;
+
+
+    }
+    .set{
+      margin-top: 1rem;
+      margin-bottom: .2rem;
+    }
+    .text-left{
+      /* margin-left: -1rem; */
+      margin-bottom:0;
+    }
+
+
+  </style>
+</head>
+
+
+<body>
+  <canvas></canvas>
+<div class="container">
+  <section class="info">
+    <h1 class="text-left">Morgan Higby-Flowers</h1>
+    <h3>Web Developer && New Media Artist</h3>
+<div class="info-body">
+    <div>Employment:</div>
+    <div> <strong>Sr Application Developer</strong> @ VUMC  </div>
+    <div>Education:</div>
+    <div><strong> MFA </strong> | <strong>Electronic Integrated Arts</strong> Alfred University</div>
+    <div><strong> BFA </strong> | <strong>Film Video & New Media</strong> School of the Art Institute of Chicago </div>
+    <div>Lives:</div>
+    <div><strong> Nashville, TN </strong></div>
+    </div>
+
+
+    <p class='set'><strong>Some websites I develop:</strong></p>
+    <a href="http://databrowser.researchallofus.org">Data Browser</a> |
+    <a href="http://virginiagriswold.com/">Virginia Griswold Artist</a> |
+    <a href="http://phekb.org/"> The Phenotype KnowledgeBase</a> |
+    <a href="https://pogoe.org/">The Portal of Geriatrics Online Education</a>
+    <p class='set'><strong>Some of my artwork:</strong></p>
+    <a href="https://vimeo.com/159279775">P r o x m i t y</a> |
+    <a href="https://vimeo.com/134217703">Syncope</a> |
+    <a href="https://vimeo.com/98595512">kvika</a> |
+    <a href="https://vimeo.com/121733157">LANscrub</a> |
+    <a href="https://youtu.be/TW0AgmBxb24">notha</a> |
+    <a href="https://youtu.be/mHdAYKGNajQ">Input == Input ( loud )</a> |
+    <a href="https://youtu.be/uxhFiuF2Gv0">Dish Drone ( collaboration with Virginia Griswold )</a> |
+    <a href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
+    <a href="https://vimeo.com/136279974">SystemPolitics</a>
+  </section>
+</div>
+
+
+
+</body>
+<script>
+  var canvas = document.querySelector("canvas");
+  var context = canvas.getContext("2d");
+  var cachedTexture = canvas;
+  var animating = true;
+  var width, height, radius, centerX, centerY;
+  var raf = window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    window.oRequestAnimationFrame;
+  var theta = 20;
+  var direction = 0;
+  var time = performance.now() / 10;
+
+  resize();
+  tick();
+  var translateX;
+  var translateY;
+  var translate0 = -.5;
+  var translate1 = 1;
+  var rotate0 = .10;
+  var rotate1 = 0;
+  var scale0 = 1;
+  var scale1 = .01;
+  var sizeX = 100;
+  var sizeY = 100;
+  var now = new Date();
+  var sec = now.getSeconds();
+
+  window.addEventListener("resize", resize, false);
+  document.addEventListener("mousedown", mouseDown, false);
+
+
+  function renderToCache(renderFunction) {
+    var buffer = document.createElement('canvas');
+    buffer.width = width;
+    buffer.height = height;
+    renderFunction(buffer.getContext('2d'));
+    return buffer;
+  };
+
+  document.addEventListener('mousemove', function(ev) {
+    translateX = ev.clientX;
+    translateY = ev.clientY;
+  });
+  function drawScene() {
+
+    cachedTexture = renderToCache(function(ctx) {
+      var img = new Image();
+
+      console.log();
+     
+      
+
+
+
+
+
+
+      ctx.translate(centerX - width / 2, centerY - height / 2);
+      ctx.scale(.9999, .999);
+      ctx.setTransform(1, 0.001, 0.001, 1, 0, 0)
+      ctx.drawImage(cachedTexture, 0, 0, width, height);
+    
+
+      img.src = 'bird.png';
+      var imgWidth = parseInt(img.naturalWidth);
+      var imgHeight = parseInt(img.naturalHeight);
+      ctx.globalCompositeOperation = "luminosity";
+for (let i = 0; i < 500; i++) {
+    const numX = i  * (translateX / 5);
+    const numY = i  * (translateY / 5);
+
+    //  ctx.drawImage(img, numX - imgWidth / 2, numY - imgHeight / 2);
+     ctx.drawImage(img, numX^width/2 , numY^height/2);
+
+}
+
+
+
+    });
+    context.fillRect(0, 0, width, height);
+    context.globalCompositeOperation = "copy";
+    context.drawImage(cachedTexture, 0, 0);
+
+  }
+
+
+
+
+  function tick() {
+
+    var now = performance.now() / 100;
+    if (animating) {
+      setTimeout(function () {
+        raf(tick);
+      }, 20);
+      theta = (now / time) / direction;
+      time = now;
+      drawScene();
+
+    } else raf(tick);
+  }
+
+  function resize(e) {
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+    centerX = (width / 2);
+    centerY = height / 2;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    if (!animating) drawScene();
+  }
+
+  function mouseDown(e) {
+// click to pasue
+    e.stopPropagation();
+    e.preventDefault();
+
+    animating = !animating;
+    if (animating) {
+      direction *= -1;
+      time = performance.now() / 1000;
+      tick();
+    }
+  }
+</script>
+
 </html>
