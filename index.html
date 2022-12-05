@@ -35,7 +35,7 @@
 
 
         canvas {
-            position: fixed;
+            /* position: fixed; */
             z-index: -1;
             height: 105vh;
             width: 105vw;
@@ -63,16 +63,50 @@
             /* margin-left: -1rem; */
             margin-bottom: 0;
         }
+
+        .linklist {
+    color: #eeeeee;
+    display: flex;
+    padding-left: 0;
+    font-size: 1.5em;
+    list-style-type: none;
+}
+.linklist > li > a {
+    text-decoration: none;
+    color:#72a0e5;
+}
+.linklist > li > a:hover{
+    color:#144fa6;
+}
     </style>
 </head>
 
 
 <body>
-    <canvas></canvas>
+
     <div class="container">
         <section class="info">
             <h1 class="text-left">Morgan Higby-Flowers</h1>
             <h3>New Media Artist</h3>
+
+            <ul class="linklist">
+                <!-- -<a href="http://morganhigbyflowers.com/studentwork.html"><li>Student Work</li></a> -->
+                
+                
+                
+                <li><a target="_blank" href="http://screendumpshots.tumblr.com/">Tumblr </a></li>
+                
+          
+                <li><a target="_blank" href="http://www.archive.org/details/MorganHigby-flowerssMfaWork">Archive </a></li>
+                <li><a target="_blank" href="http://youtube.com/mhigby">YouTube </a></li>
+          
+                <li><a target="_blank" href=" https://twitter.com/MrgnHgbyFlwrs     ">Twitter</a></li>
+                      <li><a target="_blank" href="https://soundcloud.com/morgan-higby-flowers/tracks">SoundCloud </a></li>
+                <li><a target="_blank" href="https://objkt.com/profile/tz1YrA1XwPqiVVC7L2hVapAbq2bm9aaGZtKQ/created">Objkt </a></li>
+                <li><a target="_blank" href="https://teia.art/mrgn.hgby.flwrs">Teia.art </a></li>
+                
+                
+                </ul>
             <!-- <div class="info-body">
                 <div>Employment:</div>
                 <div> <strong>Sr Application Developer</strong> @ VUMC </div>
@@ -101,7 +135,9 @@
             <a href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
             <a href="https://vimeo.com/136279974">SystemPolitics</a>
         </section>
+        
     </div>
+    <canvas></canvas>
 
 
 
@@ -119,7 +155,7 @@
         window.oRequestAnimationFrame;
     var theta = 20;
     var direction = 0;
-    var time = performance.now() / 100;
+    var time = performance.now() / 1000;
     var translateX;
     var translateY;
     var translate0 = -.5;
@@ -167,7 +203,7 @@
 
     window.addEventListener("resize", resize, false);
     document.addEventListener("mousedown", mouseDown, false);
-    document.addEventListener("keydown", keyDown, false);
+    // document.addEventListener("keydown", keyDown, false);
 
     function renderToCache(renderFunction) {
         var buffer = document.createElement('canvas');
@@ -194,8 +230,8 @@
         cachedTexture = renderToCache(function (ctx) {
             var img = new Image();
 
-            // ctx.translate(centerX - width / 2, centerY - height / 2);
-            // ctx.scale(.9999, .999);
+            ctx.translate(centerX - width / 2, centerY - height / 2);
+            // ctx.scale(.9, .9);
             ctx.setTransform(1, 0.000, 0.000, 1.001, 0, 0);
             ctx.drawImage(cachedTexture, 0, 0, width, height);
             ctx.globalCompositeOperation = compositeCollection[1]
@@ -278,10 +314,10 @@
         // click to pasue
         e.stopPropagation();
         e.preventDefault();
-        animating = !animating;
+        // animating = !animating;
         if (animating) {
-            // direction *= 10;
-            time = performance.now() / 100;
+            direction *= -2;
+            time = performance.now() / 1;
             tick();
         }
     }
