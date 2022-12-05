@@ -65,19 +65,21 @@
         }
 
         .linklist {
-    color: #eeeeee;
-    display: flex;
-    padding-left: 0;
-    font-size: 1.5em;
-    list-style-type: none;
-}
-.linklist > li > a {
-    text-decoration: none;
-    color:#72a0e5;
-}
-.linklist > li > a:hover{
-    color:#144fa6;
-}
+            color: #eeeeee;
+            display: flex;
+            padding-left: 0;
+            font-size: 1.5em;
+            list-style-type: none;
+        }
+
+        .linklist>li>a {
+            text-decoration: none;
+            color: #72a0e5;
+        }
+
+        .linklist>li>a:hover {
+            color: #144fa6;
+        }
     </style>
 </head>
 
@@ -91,22 +93,20 @@
 
             <ul class="linklist">
                 <!-- -<a href="http://morganhigbyflowers.com/studentwork.html"><li>Student Work</li></a> -->
-                
-                
-                
+
+
+
                 <li><a target="_blank" href="http://screendumpshots.tumblr.com/">Tumblr </a></li>
-                
-          
-                <li><a target="_blank" href="http://www.archive.org/details/MorganHigby-flowerssMfaWork">Archive </a></li>
+                <li><a target="_blank" href="http://www.archive.org/details/MorganHigby-flowerssMfaWork">Archive </a>
+                </li>
                 <li><a target="_blank" href="http://youtube.com/mhigby">YouTube </a></li>
-          
-                <li><a target="_blank" href=" https://twitter.com/MrgnHgbyFlwrs     ">Twitter</a></li>
-                      <li><a target="_blank" href="https://soundcloud.com/morgan-higby-flowers/tracks">SoundCloud </a></li>
-                <li><a target="_blank" href="https://objkt.com/profile/tz1YrA1XwPqiVVC7L2hVapAbq2bm9aaGZtKQ/created">Objkt </a></li>
+                <li><a target="_blank" href=" https://twitter.com/MrgnHgbyFlwrs">Twitter</a></li>
+                <li><a target="_blank" href="https://www.instagram.com/mrgnhgbyflwrs/">Instagram</a></li>
+                <li><a target="_blank" href="https://soundcloud.com/morgan-higby-flowers/tracks">SoundCloud </a></li>
+                <li><a target="_blank"
+                        href="https://objkt.com/profile/tz1YrA1XwPqiVVC7L2hVapAbq2bm9aaGZtKQ/created">Objkt </a></li>
                 <li><a target="_blank" href="https://teia.art/mrgn.hgby.flwrs">Teia.art </a></li>
-                
-                
-                </ul>
+            </ul>
             <!-- <div class="info-body">
                 <div>Employment:</div>
                 <div> <strong>Sr Application Developer</strong> @ VUMC </div>
@@ -135,7 +135,7 @@
             <a href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
             <a href="https://vimeo.com/136279974">SystemPolitics</a>
         </section>
-        
+
     </div>
     <canvas></canvas>
 
@@ -183,10 +183,10 @@
     ]
     // let compositeCollection = ['source-over', 'source-atop', 'destination-atop'];
     let compositeCollection = [
-    "source-over",
-    "source-out",
-    "source-over"
-];
+        "source-over",
+        "source-out",
+        "source-over"
+    ];
 
     const copyContent = async () => {
         try {
@@ -213,15 +213,25 @@
         return buffer;
     };
 
-    document.addEventListener('mousemove', function (ev) {
-        translateX = ev.clientX;
-        translateY = ev.clientY;
+    document.addEventListener('touchmove', e => {
+        translateY = e.changedTouches[0].clientX;
+        translateX = e.changedTouches[0].clientY;
+    });
+
+    document.addEventListener('touchstart', e => {
+        translateY = e.changedTouches[0].clientX;
+        translateX = e.changedTouches[0].clientY;
+    });
+
+    document.addEventListener('mousemove', e => {
+        console.log(e, 'e');
+        translateX = e.clientX;
+        translateY = e.clientY;
     });
 
     function randomComposite() {
         randomComposite = compositeList[Math.floor(Math.random() * compositeList.length)];
         payload = [randomComposite, randomComposite, randomComposite];
-        console.log(payload);
         return payload;
     }
 
@@ -241,7 +251,8 @@
             var imgHeight = parseInt(img.naturalHeight);
             ctx.globalCompositeOperation = compositeCollection[0];
             ctx.globalCompositeOperation = "xor";
-            ctx.drawImage(img, translateX - imgWidth / 2, translateY - imgHeight / 2, imgWidth, imgHeight);
+            ctx.drawImage(img, translateX - imgWidth / 2, translateY - imgHeight / 2, imgWidth,
+                imgHeight);
             // ctx.drawImage(img, numX ^ imgHeight / 2, numY ^ height / 2);
 
         });
@@ -287,14 +298,11 @@
         } else if (e.key == 'd') {
             compositeCollection = ['source-atop', 'destination-atop', compositeList[Math.floor(Math.random() *
                 compositeList.length)]];
-        } 
-        else if (e.key == 'f') {
+        } else if (e.key == 'f') {
             compositeCollection = ['source-over', 'source-atop', 'destination-atop'];
-        }
-        else if (e.key == 'z') {
-            compositeCollection = ['source-over','source-atop','destination-atop'];
-        }
-         else {
+        } else if (e.key == 'z') {
+            compositeCollection = ['source-over', 'source-atop', 'destination-atop'];
+        } else {
             for (let i = 0; i < 3; i++) {
                 compositeCollection.pop();
                 // compositeCollection.push(compositeList[Math.floor(Math.random() * compositeList.length)]);
