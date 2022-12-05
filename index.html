@@ -29,27 +29,32 @@
 
         .container {
             width: 100%;
-            background: white;
+            background: rgba(0, 0, 255, .65);
+            background: linear-gradient(180deg, rgba(0, 0, 255, .65) 97%, rgba(255, 0, 0, 0) 100%);
+
+
             padding-right: 2rem;
         }
 
 
         canvas {
-            /* position: fixed; */
+            position: fixed;
+            top: 0rem;
             z-index: -1;
             height: 105vh;
             width: 105vw;
             opacity: 1;
-            cursor: none;
+            /* cursor: none; */
         }
 
 
         .info {
             cursor: default;
-            background: rgba(255, 255, 255, 1);
+            /* background: rgba(255, 255, 255, 1); */
             width: 95%;
             padding: 2rem;
             margin: auto;
+            color: #ffac97;
 
 
         }
@@ -74,11 +79,19 @@
 
         .linklist>li>a {
             text-decoration: none;
-            color: #72a0e5;
+            color: #e172e5;
         }
 
         .linklist>li>a:hover {
-            color: #144fa6;
+            color: #00ffdd;
+        }
+
+        .links {
+            /* color:darkred; */
+        }
+
+        .lnks a {
+            color: #b2f5eb;
         }
     </style>
 </head>
@@ -89,51 +102,31 @@
     <div class="container">
         <section class="info">
             <h1 class="text-left">Morgan Higby-Flowers</h1>
-            <h3>New Media Artist</h3>
-
             <ul class="linklist">
-                <!-- -<a href="http://morganhigbyflowers.com/studentwork.html"><li>Student Work</li></a> -->
-
-
-
                 <li><a target="_blank" href="http://screendumpshots.tumblr.com/">Tumblr </a></li>
                 <li><a target="_blank" href="http://www.archive.org/details/MorganHigby-flowerssMfaWork">Archive </a>
                 </li>
+                <li><a target="_blank" href="https://www.instagram.com/mrgnhgbyflwrs/">Instgrm</a></li>
                 <li><a target="_blank" href="http://youtube.com/mhigby">YouTube </a></li>
                 <li><a target="_blank" href=" https://twitter.com/MrgnHgbyFlwrs">Twitter</a></li>
-                <li><a target="_blank" href="https://www.instagram.com/mrgnhgbyflwrs/">Instagram</a></li>
                 <li><a target="_blank" href="https://soundcloud.com/morgan-higby-flowers/tracks">SoundCloud </a></li>
                 <li><a target="_blank"
                         href="https://objkt.com/profile/tz1YrA1XwPqiVVC7L2hVapAbq2bm9aaGZtKQ/created">Objkt </a></li>
                 <li><a target="_blank" href="https://teia.art/mrgn.hgby.flwrs">Teia.art </a></li>
             </ul>
-            <!-- <div class="info-body">
-                <div>Employment:</div>
-                <div> <strong>Sr Application Developer</strong> @ VUMC </div>
-                <div>Education:</div>
-                <div><strong> MFA </strong> | <strong>Electronic Integrated Arts</strong> Alfred University</div>
-                <div><strong> BFA </strong> | <strong>Film Video & New Media</strong> School of the Art Institute of
-                    Chicago </div>
-                <div>Lives:</div>
-                <div><strong> Nashville, TN </strong></div>
-            </div> -->
-
-
-            <!-- <p class='set'><strong>Some websites I develop:</strong></p>
-            <a href="http://databrowser.researchallofus.org">Data Browser</a> |
-            <a href="http://virginiagriswold.com/">Virginia Griswold Artist</a> |
-            <a href="http://phekb.org/"> The Phenotype KnowledgeBase</a> |
-            <a href="https://pogoe.org/">The Portal of Geriatrics Online Education</a> -->
-            <p class='set'><strong>lnks:</strong></p>
-            <a href="https://vimeo.com/159279775">P r o x m i t y</a> |
-            <a href="https://vimeo.com/134217703">Syncope</a> |
-            <a href="https://vimeo.com/98595512">kvika</a> |
-            <a href="https://vimeo.com/121733157">LANscrub</a> |
-            <a href="https://youtu.be/TW0AgmBxb24">notha</a> |
-            <a href="https://youtu.be/mHdAYKGNajQ">Input == Input ( loud )</a> |
-            <a href="https://youtu.be/uxhFiuF2Gv0">Dish Drone ( collaboration with Virginia Griswold )</a> |
-            <a href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
-            <a href="https://vimeo.com/136279974">SystemPolitics</a>
+            <div class="lnks">
+                <p class='set'><strong>lnks:</strong></p>
+                <a target="_blank" href="https://vimeo.com/159279775">P r o x m i t y</a> |
+                <a target="_blank" href="https://vimeo.com/134217703">Syncope</a> |
+                <a target="_blank" href="https://vimeo.com/98595512">kvika</a> |
+                <a target="_blank" href="https://vimeo.com/121733157">LANscrub</a> |
+                <a target="_blank" href="https://youtu.be/TW0AgmBxb24">notha</a> |
+                <a target="_blank" href="https://youtu.be/mHdAYKGNajQ">Input == Input ( loud )</a> |
+                <a target="_blank" href="https://youtu.be/uxhFiuF2Gv0">Dish Drone ( collaboration with Virginia Griswold
+                    )</a> |
+                <a target="_blank" href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
+                <a target="_blank" href="https://vimeo.com/136279974">SystemPolitics</a>
+            </div>
         </section>
 
     </div>
@@ -190,7 +183,7 @@
 
     const copyContent = async () => {
         try {
-            await navigator.clipboard.writeText(compositeCollection.toString());
+            await navigator.clipboard.write(cachedTexture);
             console.log('Content copied to clipboard');
         } catch (err) {
             console.error('Failed to copy: ', err);
@@ -214,17 +207,16 @@
     };
 
     document.addEventListener('touchmove', e => {
-        translateY = e.changedTouches[0].clientX;
-        translateX = e.changedTouches[0].clientY;
+        translateY = e.changedTouches[0].clientY;
+        translateX = e.changedTouches[0].clientX;
     });
 
     document.addEventListener('touchstart', e => {
-        translateY = e.changedTouches[0].clientX;
-        translateX = e.changedTouches[0].clientY;
+        translateY = e.changedTouches[0].clientY;
+        translateX = e.changedTouches[0].clientX;
     });
 
     document.addEventListener('mousemove', e => {
-        console.log(e, 'e');
         translateX = e.clientX;
         translateY = e.clientY;
     });
@@ -313,13 +305,15 @@
             }
         }
         // copyContent();
-        console.log(compositeCollection);
+        // console.log(compositeCollection);
+
     }
 
 
     function mouseDown(e) {
         // randomComposite();
         // click to pasue
+        copyContent();
         e.stopPropagation();
         e.preventDefault();
         // animating = !animating;
