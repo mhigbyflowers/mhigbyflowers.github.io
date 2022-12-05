@@ -119,10 +119,7 @@
         window.oRequestAnimationFrame;
     var theta = 20;
     var direction = 0;
-    var time = performance.now() / 10;
-
-    resize();
-    tick();
+    var time = performance.now() / 2;
     var translateX;
     var translateY;
     var translate0 = -.5;
@@ -148,6 +145,20 @@
         'copy',
         'xor'
     ]
+    let compositeCollection = ['source-over', 'source-atop', 'destination-atop'];
+
+    const copyContent = async () => {
+        try {
+            await navigator.clipboard.writeText(compositeCollection.toString());
+            console.log('Content copied to clipboard');
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
+
+    resize();
+    tick();
+
 
     window.addEventListener("resize", resize, false);
     document.addEventListener("mousedown", mouseDown, false);
@@ -211,7 +222,7 @@
 
     function tick() {
 
-        var now = performance.now() / 100;
+        var now = performance.now() / 2;
         if (animating) {
 
             setTimeout(() => raf(tick), 60);
@@ -236,12 +247,41 @@
         if (!animating) drawScene();
     }
 
+    function keyDown(e) {
+        if (e.key == 'a') {
+            compositeCollection = ['destination-atop', 'source-out', 'destination-atop'];
+        } else if (e.key == 's') {
+            compositeCollection = ['source-over', 'source-atop', 'destination-atop'];
+        } else if (e.key == 'd') {
+            compositeCollection = ['source-atop', 'destination-atop', compositeList[Math.floor(Math.random() *
+                compositeList.length)]];
+        } 
+        else if (e.key == 'f') {
+            compositeCollection = ['source-over', 'source-atop', 'destination-atop'];
+        }
+        else if (e.key == 'z') {
+            compositeCollection = ['source-over','source-atop','destination-atop'];
+        }
+         else {
+            for (let i = 0; i < 3; i++) {
+                compositeCollection.pop();
+                // compositeCollection.push(compositeList[Math.floor(Math.random() * compositeList.length)]);
+            }
+            for (let i = 0; i < 3; i++) {
+                // compositeCollection.pop();
+                compositeCollection.push(compositeList[Math.floor(Math.random() * compositeList.length)]);
+            }
+        }
+        // copyContent();
+        console.log(compositeCollection);
+    }
+
+
     function mouseDown(e) {
         randomComposite();
         // click to pasue
         e.stopPropagation();
         e.preventDefault();
-
         animating = !animating;
         if (animating) {
             direction *= -1;
