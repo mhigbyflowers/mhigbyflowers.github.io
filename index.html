@@ -119,7 +119,7 @@
         window.oRequestAnimationFrame;
     var theta = 20;
     var direction = 0;
-    var time = performance.now() / 2;
+    var time = performance.now() / 100;
     var translateX;
     var translateY;
     var translate0 = -.5;
@@ -162,7 +162,7 @@
 
     window.addEventListener("resize", resize, false);
     document.addEventListener("mousedown", mouseDown, false);
-
+    document.addEventListener("keydown", keyDown, false);
 
     function renderToCache(renderFunction) {
         var buffer = document.createElement('canvas');
@@ -177,9 +177,11 @@
         translateY = ev.clientY;
     });
 
-    function randomComposite(){
-        return compositeList[Math.floor(Math.random() * compositeList.length)];
-        
+    function randomComposite() {
+        randomComposite = compositeList[Math.floor(Math.random() * compositeList.length)];
+        payload = [randomComposite, randomComposite, randomComposite];
+        console.log(payload);
+        return payload;
     }
 
     function drawScene() {
@@ -191,7 +193,7 @@
             // ctx.scale(.9999, .999);
             ctx.setTransform(1, 0.000, 0.000, 1.009, 0, 0);
             ctx.drawImage(cachedTexture, 0, 0, width, height);
-            ctx.globalCompositeOperation = "darken"
+            ctx.globalCompositeOperation = compositeCollection[1]
             ctx.setTransform(1, 0.000, 0.000, .998, 0, 0);
             ctx.drawImage(cachedTexture, 0, 0, width, height);
             // ctx.setTransform(1, 0.000, 0.000, 1, 0, 0)
@@ -201,17 +203,14 @@
             img.src = 'bird.png';
             var imgWidth = parseInt(img.naturalWidth);
             var imgHeight = parseInt(img.naturalHeight);
-            ctx.globalCompositeOperation = "xor";
+            ctx.globalCompositeOperation = compositeCollection[0];
+            // ctx.globalCompositeOperation = "xor";
             ctx.drawImage(img, translateX - imgWidth / 2, translateY - imgHeight / 2, 600, 600);
             // ctx.drawImage(img, numX ^ imgHeight / 2, numY ^ height / 2);
 
-
-
-
-
         });
         // context.fillRect(0, 0, width, height);
-        context.globalCompositeOperation = "luminosity";
+        context.globalCompositeOperation = compositeCollection[2];
         context.drawImage(cachedTexture, 0, 0, );
 
 
@@ -224,13 +223,10 @@
 
         var now = performance.now() / 2;
         if (animating) {
-
             setTimeout(() => raf(tick), 60);
             theta = (now / time) / direction;
             time = now;
             drawScene();
-
-
         } else raf(tick);
     }
 
@@ -285,7 +281,7 @@
         animating = !animating;
         if (animating) {
             direction *= -1;
-            time = performance.now() / 1000;
+            time = performance.now() / 100;
             tick();
         }
     }
