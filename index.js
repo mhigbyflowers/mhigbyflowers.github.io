@@ -63,11 +63,7 @@
     document.addEventListener("mousedown", mouseDown, false);
     document.addEventListener("keydown", keyDown, false);
 
-    function close(){
-        const infoBox = document.querySelector(".container");
-        console.log(infoBox,'infovoos');
-        alert();
-    }
+
 
     function renderToCache(renderFunction) {
         var buffer = document.createElement('canvas');
@@ -152,17 +148,16 @@
 
     function keyDown(e) {
         if (e.key == 'w') {
-            driftY--;
-            // compositeCollection = ['destination-atop', 'source-out', 'destination-atop'];
+            driftY = driftY - 0.01
         } 
         else if (e.key == 's') {
-            driftY++;
+            driftY = driftY + 0.01;
         } 
         else if (e.key == 'a') {
-            driftX--;
+            driftX = driftX - 0.01;
         } 
         else if (e.key == 'd') {
-            driftX++;
+            driftX = driftX + 0.01;
         } 
         else if (e.key == 'o') {
             scaleY = scaleY - 0.0001;

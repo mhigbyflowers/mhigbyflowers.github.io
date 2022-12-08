@@ -158,7 +158,12 @@
     <script>
         function closeMe() {
             const infoBox = document.querySelector(".container");
-            infoBox.style.display = 'none';
+            // infoBox.style.display = 'none';
+            if (infoBox.style.display === "none") {
+        infoBox.style.display = "block";
+      } else {
+        infoBox.style.display = "none";
+      }
         }
         </script>
 
