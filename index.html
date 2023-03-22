@@ -26,14 +26,16 @@
             overflow-y: scroll;
             overflow-x: hidden;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #666;
         }
 
         .container {
             width: 100%;
-            background: rgba(0, 0, 255, .65);
-            background: linear-gradient(180deg, rgba(0, 0, 255, .65) 97%, rgba(255, 0, 0, 0) 100%);
+            /* background: rgba(0, 0, 255, .65); */
+            /* background: linear-gradient(180deg, rgba(0, 0, 255, .65) 97%, rgba(255, 0, 0, 0) 100%); */
             padding-right: 2rem;
-            display: none;
+            display: block;
+            height: 10vh;
         }
 
 
@@ -51,9 +53,9 @@
         .info {
             cursor: default;
             /* background: rgba(255, 255, 255, 1); */
-            width: 95%;
-            padding: 2rem;
-            padding-top: .01rem;
+            /* width: 95%; */
+            padding: 0.5rem;
+            /* padding-top: 0.01rem; */
             margin: auto;
             color: #ffac97;
 
@@ -61,13 +63,12 @@
         }
 
         .set {
-            margin-top: 1rem;
-            margin-bottom: .2rem;
+            margin: 0;
         }
 
         .text-left {
             /* margin-left: -1rem; */
-            margin-bottom: 0;
+            margin: 0;
         }
 
         .linklist {
@@ -76,6 +77,7 @@
             padding-left: 0;
             font-size: 1.5em;
             list-style-type: none;
+            margin: 0;
         }
 
         .linklist>li>a {
@@ -118,65 +120,98 @@
             right: 1rem;
 
         }
+
+        .layout {
+            /* display: grid;
+            grid-template-rows: 10% 90%; */
+        }
+
+        #myVideo {
+            height: 90vh;
+            padding: 1rem;
+        }
     </style>
 
 </head>
 
 
 <body>
+    <div class="layout">
+        <!-- <div class="keys">w a s d o k l ;</div> -->
+        <!-- <div onclick="closeMe()" class="close">X</div> -->
+      
 
-    <div class="keys">w a s d o k l ;</div>
-    <div onclick="closeMe()" class="close">X</div>
-    <div class="container">
-        <section class="info">
-            <h1 class="text-left">Morgan Higby-Flowers</h1>
-            <ul class="linklist">
-                <li><a target="_blank" href="http://screendumpshots.tumblr.com/">Tumblr </a></li>
-                <li><a target="_blank" href="http://www.archive.org/details/MorganHigby-flowerssMfaWork">Archive </a>
-                </li>
-                <li><a target="_blank" href="https://www.instagram.com/mrgnhgbyflwrs/">Instgrm</a></li>
-                <li><a target="_blank" href="http://youtube.com/mhigby">YouTube </a></li>
-                <li><a target="_blank" href=" https://twitter.com/MrgnHgbyFlwrs">Twitter</a></li>
-                <li><a target="_blank" href="https://soundcloud.com/morgan-higby-flowers/tracks">SoundCloud </a></li>
-                <li><a target="_blank"
-                        href="https://objkt.com/profile/tz1YrA1XwPqiVVC7L2hVapAbq2bm9aaGZtKQ/created">Objkt </a></li>
-                <li><a target="_blank" href="https://teia.art/mrgn.hgby.flwrs">Teia.art </a></li>
-            </ul>
-            <div class="lnks">
-                <p class='set'><strong>lnks:</strong></p>
-                <a target="_blank" href="https://vimeo.com/159279775">P r o x m i t y</a> |
-                <a target="_blank" href="https://vimeo.com/134217703">Syncope</a> |
-                <a target="_blank" href="https://vimeo.com/98595512">kvika</a> |
-                <a target="_blank" href="https://vimeo.com/121733157">LANscrub</a> |
-                <a target="_blank" href="https://youtu.be/TW0AgmBxb24">notha</a> |
-                <a target="_blank" href="https://youtu.be/mHdAYKGNajQ">Input == Input ( loud )</a> |
-                <a target="_blank" href="https://youtu.be/uxhFiuF2Gv0">Dish Drone ( collaboration with Virginia Griswold
-                    )</a> |
-                <a target="_blank" href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
-                <a target="_blank" href="https://vimeo.com/136279974">SystemPolitics</a>
-            </div>
-        </section>
-    </div>
-    <script src="./php/index.php"></script>
-    <canvas></canvas>
-    <script>
-        function closeMe() {
-            const infoBox = document.querySelector(".container");
-            // infoBox.style.display = 'none';
-            if (infoBox.style.display === "none") {
-                infoBox.style.display = "block";
-            } else {
-                infoBox.style.display = "none";
+        <!-- <canvas></canvas> -->
+
+        <div style="position: relative">
+            <video style=" margin: 0 auto; display: block;" id="myVideo" controls autoplay muted loop>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+        <script>
+            const mp4List = ['22.11.02-@-12.35.15.mp4',
+                '22.12.09-Main_Output-23.31.38.mp4',
+                'artifact_(5)_1.mp4',
+                'QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4',
+                'video_object_716795.mp4'
+            ]
+            const videoElement = document.getElementById('myVideo');
+            const randomIndex = Math.floor(Math.random() * mp4List.length);
+            const randomMp4 = './mp4/' + mp4List[randomIndex];
+            videoElement.src = randomMp4;
+        </script>
+          <div class="container">
+            <section class="info">
+                <h1 class="text-left">Morgan Higby-Flowers</h1>
+                <ul class="linklist">
+                    <li><a target="_blank" href="http://screendumpshots.tumblr.com/">Tumblr </a></li>
+                    <li><a target="_blank" href="http://www.archive.org/details/MorganHigby-flowerssMfaWork">Archive
+                        </a>
+                    </li>
+                    <li><a target="_blank" href="https://www.instagram.com/mrgnhgbyflwrs/">Instgrm</a></li>
+                    <li><a target="_blank" href="http://youtube.com/mhigby">YouTube </a></li>
+                    <li><a target="_blank" href=" https://twitter.com/MrgnHgbyFlwrs">Twitter</a></li>
+                    <li><a target="_blank" href="https://soundcloud.com/morgan-higby-flowers/tracks">SoundCloud </a>
+                    </li>
+                    <li><a target="_blank"
+                            href="https://objkt.com/profile/tz1YrA1XwPqiVVC7L2hVapAbq2bm9aaGZtKQ/created">Objkt </a>
+                    </li>
+                    <li><a target="_blank" href="https://teia.art/mrgn.hgby.flwrs">Teia.art </a></li>
+                </ul>
+                <div class="lnks">
+                    <p class='set'><strong>lnks:</strong></p>
+                    <a target="_blank" href="https://vimeo.com/159279775">P r o x m i t y</a> |
+                    <a target="_blank" href="https://vimeo.com/134217703">Syncope</a> |
+                    <a target="_blank" href="https://vimeo.com/98595512">kvika</a> |
+                    <a target="_blank" href="https://vimeo.com/121733157">LANscrub</a> |
+                    <a target="_blank" href="https://youtu.be/TW0AgmBxb24">notha</a> |
+                    <a target="_blank" href="https://youtu.be/mHdAYKGNajQ">Input == Input ( loud )</a> |
+                    <a target="_blank" href="https://youtu.be/uxhFiuF2Gv0">Dish Drone ( collaboration with Virginia
+                        Griswold
+                        )</a> |
+                    <a target="_blank" href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
+                    <a target="_blank" href="https://vimeo.com/136279974">SystemPolitics</a>
+                </div>
+            </section>
+        </div>
+        <script>
+            function closeMe() {
+                const infoBox = document.querySelector(".container");
+                // infoBox.style.display = 'none';
+                if (infoBox.style.display === "none") {
+                    infoBox.style.display = "block";
+                } else {
+                    infoBox.style.display = "none";
+                }
             }
-        }
-    </script>
+        </script>
 
-
+    </div>
 
 </body>
 
 
-<script src="./index.js"></script>
+<!-- <script src="./index.js"></script> -->
 
 
 </html>

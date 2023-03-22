@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<head></head>
+
+<div style="background: #666;">
+    <video style="height:100vh; margin: 0 auto; display: block;" 
+    id="myVideo" controls autoplay muted>
+        <source src="" type="video/mp4">
+    </video>
+</div>
+<script>
+    const mp4List = ['22.11.02-@-12.35.15.mp4',
+        '22.12.09-Main_Output-23.31.38.mp4',
+        'artifact_(5)_1.mp4',
+        'QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4',
+        'video_object_716795.mp4'
+    ]
+    const videoElement = document.getElementById('myVideo');
+    const randomIndex = Math.floor(Math.random() * mp4List.length);
+    const randomMp4 = mp4List[randomIndex];
+    videoElement.src = randomMp4;
+</script>
+
+</html>
