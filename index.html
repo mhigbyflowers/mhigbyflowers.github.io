@@ -139,28 +139,56 @@
     <div class="layout">
         <!-- <div class="keys">w a s d o k l ;</div> -->
         <!-- <div onclick="closeMe()" class="close">X</div> -->
-      
+
 
         <!-- <canvas></canvas> -->
 
         <div style="position: relative">
-            <video style=" margin: 0 auto; display: block;" id="myVideo" controls autoplay muted loop>
+            <video style=" margin: 0 auto; display: block;" id="myVideo" autoplay muted loop>
                 <source src="" type="video/mp4">
             </video>
         </div>
         <script>
-            const mp4List = ['22.11.02-@-12.35.15.mp4',
-                '22.12.09-Main_Output-23.31.38.mp4',
-                'artifact_(5)_1.mp4',
-                'QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4',
-                'video_object_716795.mp4'
-            ]
+            const mp4List = ["artifact_2.mp4",
+                "0000-0851_1_1.mp4",
+                "0001-0486.mp4",
+                "0001-495.mp4",
+                "22.04.03-Main_Output-23.18.11_1.mp4",
+                "22.10.07-@-14.39.02_12_1 2.mp4",
+                "22.10.07-@-14.39.02_12_1.mp4",
+                "22.11.02-@-12.35.15.mp4",
+                "22.12.09-Main_Output-23.31.38.mp4",
+                "23.01.18-Main_Output-22.06.29.mp4",
+                "artifact_(2).mp4",
+                "artifact_(3).mp4",
+                "artifact_(5)_1.mp4",
+                "artifact.mp4",
+                "HueHallinf.mp4",
+                "QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4",
+                "video_object_716795.mp4artifact_2.mp4",
+                "0000-0851_1_1.mp4",
+                "0001-0486.mp4",
+                "0001-495.mp4",
+                "22.04.03-Main_Output-23.18.11_1.mp4",
+                "22.10.07-@-14.39.02_12_1 2.mp4",
+                "22.10.07-@-14.39.02_12_1.mp4",
+                "22.11.02-@-12.35.15.mp4",
+                "22.12.09-Main_Output-23.31.38.mp4",
+                "23.01.18-Main_Output-22.06.29.mp4",
+                "artifact_(2).mp4",
+                "artifact_(3).mp4",
+                "artifact_(5)_1.mp4",
+                "artifact.mp4",
+                "HueHallinf.mp4",
+                "QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4",
+                "video_object_716795.mp4"
+            ];
             const videoElement = document.getElementById('myVideo');
             const randomIndex = Math.floor(Math.random() * mp4List.length);
             const randomMp4 = './mp4/' + mp4List[randomIndex];
             videoElement.src = randomMp4;
         </script>
-          <div class="container">
+        <div class="container">
             <section class="info">
                 <h1 class="text-left">Morgan Higby-Flowers</h1>
                 <ul class="linklist">
