@@ -54,7 +54,7 @@
             cursor: default;
             /* background: rgba(255, 255, 255, 1); */
             /* width: 95%; */
-            padding: 0.5rem;
+            padding:1rem;
             /* padding-top: 0.01rem; */
             margin: auto;
             color: #ffac97;
@@ -128,7 +128,35 @@
 
         #myVideo {
             height: 90vh;
-            padding: 1rem;
+            max-width: 80vw;
+        }
+
+        .reload-btn {
+            background: transparent;
+            border: none;
+            width: 2rem;
+            /* position: relative; */
+            display: inline-block;
+            left: 10%;
+            height: 50%;
+            margin-right: 3rem;
+            margin-left: 3rem;
+            opacity: .6;
+            /* background: #ffac97; */
+        }
+
+        .reload-btn img {
+            width: 100%;
+        }
+
+        .reload-btn:active {
+            filter: invert(1);
+        }
+
+        .main-layout {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
         }
     </style>
 
@@ -142,51 +170,131 @@
 
 
         <!-- <canvas></canvas> -->
-
-        <div style="position: relative">
-            <video style=" margin: 0 auto; display: block;" id="myVideo" autoplay muted loop>
-                <source src="" type="video/mp4">
-            </video>
-        </div>
+        <section class="main-layout">
+            <button onclick="reload(event)" class="reload-btn"><img src="/img/reload-icon.png" /></button>
+            <div style="position: relative">
+                <video style=" margin: 0 auto; display: block;" id="myVideo" autoplay muted loop>
+                    <source type="video/mp4">
+                </video>
+            </div>
+            <button onclick="reload(event)" style="transform: scaleX(-1);" class="reload-btn"><img
+                    src="/img/reload-icon.png" /></button>
+        </section>
         <script>
-            const mp4List = ["artifact_2.mp4",
-                "0000-0851_1_1.mp4",
-                "0001-0486.mp4",
-                "0001-495.mp4",
-                "22.04.03-Main_Output-23.18.11_1.mp4",
-                "22.10.07-@-14.39.02_12_1 2.mp4",
-                "22.10.07-@-14.39.02_12_1.mp4",
-                "22.11.02-@-12.35.15.mp4",
-                "22.12.09-Main_Output-23.31.38.mp4",
-                "23.01.18-Main_Output-22.06.29.mp4",
-                "artifact_(2).mp4",
-                "artifact_(3).mp4",
-                "artifact_(5)_1.mp4",
-                "artifact.mp4",
-                "HueHallinf.mp4",
-                "QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4",
-                "video_object_716795.mp4artifact_2.mp4",
-                "0000-0851_1_1.mp4",
-                "0001-0486.mp4",
-                "0001-495.mp4",
-                "22.04.03-Main_Output-23.18.11_1.mp4",
-                "22.10.07-@-14.39.02_12_1 2.mp4",
-                "22.10.07-@-14.39.02_12_1.mp4",
-                "22.11.02-@-12.35.15.mp4",
-                "22.12.09-Main_Output-23.31.38.mp4",
-                "23.01.18-Main_Output-22.06.29.mp4",
-                "artifact_(2).mp4",
-                "artifact_(3).mp4",
-                "artifact_(5)_1.mp4",
-                "artifact.mp4",
-                "HueHallinf.mp4",
-                "QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4",
-                "video_object_716795.mp4"
+            const mp4List = [{
+                    file: "artifact_2.mp4"
+                },
+                {
+                    file: "0000-0851_1_1.mp4"
+                },
+                {
+                    file: "0001-0486.mp4"
+                },
+                {
+                    file: "0001-495.mp4"
+                },
+                {
+                    file: "22.04.03-Main_Output-23.18.11_1.mp4"
+                },
+                {
+                    file: "22.10.07-@-14.39.02_12_1 2.mp4"
+                },
+                {
+                    file: "22.10.07-@-14.39.02_12_1.mp4"
+                },
+                {
+                    file: "22.11.02-@-12.35.15.mp4"
+                },
+                {
+                    file: "22.12.09-Main_Output-23.31.38.mp4"
+                },
+                {
+                    file: "23.01.18-Main_Output-22.06.29.mp4"
+                },
+                {
+                    file: "artifact_(2).mp4"
+                },
+                {
+                    file: "artifact_(3).mp4"
+                },
+                {
+                    file: "artifact_(5)_1.mp4"
+                },
+                {
+                    file: "artifact.mp4"
+                },
+                {
+                    file: "HueHallinf.mp4"
+                },
+                {
+                    file: "QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4"
+                },
+                {
+                    file: "video_object_716795.mp4"
+                },
+                {
+                    file: "artifact_2.mp4"
+                },
+                {
+                    file: "0000-0851_1_1.mp4"
+                },
+                {
+                    file: "0001-0486.mp4"
+                },
+                {
+                    file: "0001-495.mp4"
+                },
+                {
+                    file: "22.04.03-Main_Output-23.18.11_1.mp4"
+                },
+                {
+                    file: "22.10.07-@-14.39.02_12_1 2.mp4"
+                },
+                {
+                    file: "22.10.07-@-14.39.02_12_1.mp4"
+                },
+                {
+                    file: "22.11.02-@-12.35.15.mp4"
+                },
+                {
+                    file: "22.12.09-Main_Output-23.31.38.mp4"
+                },
+                {
+                    file: "23.01.18-Main_Output-22.06.29.mp4"
+                },
+                {
+                    file: "artifact_(2).mp4"
+                },
+                {
+                    file: "artifact_(3).mp4"
+                },
+                {
+                    file: "artifact_(5)_1.mp4"
+                },
+                {
+                    file: "artifact.mp4"
+                },
+                {
+                    file: "HueHallinf.mp4"
+                },
+                {
+                    file: "QmWcMKU1Lkp5XT2Gyqci3mnXbQA9TwNk2mFNB4bmpK2r7w.mp4"
+                },
+                {
+                    file: "video_object_716795.mp4"
+                }
             ];
-            const videoElement = document.getElementById('myVideo');
-            const randomIndex = Math.floor(Math.random() * mp4List.length);
-            const randomMp4 = './mp4/' + mp4List[randomIndex];
-            videoElement.src = randomMp4;
+            const reload = (e) => {
+                getRandomElm();
+            }
+            const getRandomElm = () => {
+                const videoElement = document.getElementById('myVideo');
+                const randomIndex = Math.floor(Math.random() * mp4List.length);
+                const randomMp4 = './mp4/' + mp4List[randomIndex].file;
+                console.log(randomMp4);
+                videoElement.src = randomMp4;
+            }
+            getRandomElm();
         </script>
         <div class="container">
             <section class="info">
@@ -206,7 +314,7 @@
                     </li>
                     <li><a target="_blank" href="https://teia.art/mrgn.hgby.flwrs">Teia.art </a></li>
                 </ul>
-                <div class="lnks">
+                <!-- <div class="lnks">
                     <p class='set'><strong>lnks:</strong></p>
                     <a target="_blank" href="https://vimeo.com/159279775">P r o x m i t y</a> |
                     <a target="_blank" href="https://vimeo.com/134217703">Syncope</a> |
@@ -219,7 +327,7 @@
                         )</a> |
                     <a target="_blank" href="https://youtu.be/fjNP2lQWuWc">wonder wander</a> |
                     <a target="_blank" href="https://vimeo.com/136279974">SystemPolitics</a>
-                </div>
+                </div> -->
             </section>
         </div>
         <script>

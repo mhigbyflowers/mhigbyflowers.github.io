@@ -1,3 +1,4 @@
 <?php
-    print("Hello World");
+$test= 'helllllo';
+    var_dump("Hello World");
 ?>
